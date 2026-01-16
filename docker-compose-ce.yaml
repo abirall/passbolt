@@ -16,6 +16,8 @@ services:
       - db
     environment:
       APP_FULL_BASE_URL: https://pass.alzubayer.com
+      PASSBOLT_SSL_FORCE: "true"
+      PASSBOLT_SECURITY_HEADERS: "true"
       DATASOURCES_DEFAULT_HOST: "db"
       DATASOURCES_DEFAULT_USERNAME: "passbolt"
       DATASOURCES_DEFAULT_PASSWORD: "P4ssb0lt"
@@ -27,11 +29,11 @@ services:
     labels:
       traefik.enable: "true"
       traefik.http.routers.passbolt-http.entrypoints: "web"
-      traefik.http.routers.passbolt-http.rule: "Host(`pass.alzubayer.com`)"
+      traefik.http.routers.passbolt-http.rule: "Host(`pb.alzubayer.com`)"
       traefik.http.routers.passbolt-http.middlewares: "SslHeader@file"
       traefik.http.routers.passbolt-https.middlewares: "SslHeader@file"
       traefik.http.routers.passbolt-https.entrypoints: "websecure"
-      traefik.http.routers.passbolt-https.rule: "Host(`pass.alzubayer.com`)"
+      traefik.http.routers.passbolt-https.rule: "Host(`pb.alzubayer.com`)"
       traefik.http.routers.passbolt-https.tls: "true"
       traefik.http.routers.passbolt-https.tls.certresolver: "letsencrypt"
 
